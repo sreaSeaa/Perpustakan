@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keranjang Belanja</title>
+    <link rel="stylesheet" href="transaksi.css">
+</head>
+<body>
+        <header>
+            <div class="logo"> <img src="logo.png" alt="logo"> </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="profil.html">Profil</a></li>
+                    <li><a href="login.html">Login</a></li>
+                     <li><a href="daftar_buku.html">peminjaman</a></li>
+                </ul>
+            </nav>
+        </header>
+      
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+                background-color: #f4f4f9;
+            }
+            .container {
+                max-width: 600px;
+                margin: 0 auto;
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            h2 {
+                text-align: center;
+            }
+            .book-list, .transaction-form {
+                margin-top: 20px;
+            }
+            .book-list ul {
+                list-style-type: none;
+                padding: 0;
+            }
+            .book-list li {
+                padding: 8px;
+                border-bottom: 1px solid #ddd;
+            }
+            .book-list li:last-child {
+                border-bottom: none;
+            }
+            .btn {
+                padding: 10px 15px;
+                margin: 10px 0;
+                border: none;
+                background-color: #83bcd2;
+                color: white;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+            .btn:disabled {
+                background-color: #ccc;
+            }
+            .message {
+                text-align: center;
+                margin-top: 20px;
+                font-size: 18px;
+            }
+        </style>
+    </head>
+    <body>
+    
+    <div class="container">
+        <h2>Transaksi Peminjaman Buku</h2>
+    
+        <div class="book-list">
+            <h3>Daftar Buku Tersedia:</h3>
+            <ul id="book-list">
+                <li id="book-1">Midnight Diaries by Malioboro Hartigan - Stok: <span id="stok-1">25</span> <button class="btn" onclick="pinjamBuku(1)">Pinjam</button></li>
+                <li id="book-2">Laut Bercerita - Stok: <span id="stok-2">10</span> <button class="btn" onclick="pinjamBuku(2)">Pinjam</button></li>
+                <li id="book-3">The Lost Library - Stok: <span id="stok-3">7</span> <button class="btn" onclick="pinjamBuku(3)">Pinjam</button></li>
+                <li id="book-1">Secrets Of Divine Love - Stok: <span id="stok-4">18</span> <button class="btn" onclick="pinjamBuku(1)">Pinjam</button></li>
+                <li id="book-2">Pulang - Stok: <span id="stok-5">20</span> <button class="btn" onclick="pinjamBuku(2)">Pinjam</button></li>
+            </ul>
+        </div>
+    
+        <div class="transaction-form">
+            <h3>Kembalikan Buku:</h3>
+            <form id="return-form">
+                <label for="return-book">Pilih buku yang akan dikembalikan:</label>
+                <select id="return-book">
+                    <option value="1">Midnight Diaries by Malioboro Hartigan </option>
+                    <option value="2">Laut Bercerita</option>
+                    <option value="3">The Lost Library</option>
+                    <option value="3">Secrets Of Divine Love</option>
+                    <option value="3">Pulang</option>
+                </select>
+                <button type="button" class="btn" onclick="kembalikanBuku()">Kembalikan</button>
+            </form>
+        </div>
+    
+        <div class="message" id="message"></div>
+    </div>
+    
+    <script>
+        // Stok awal buku
+        let stokBuku = {
+            1: 5,
+            2: 3,
+            3: 2
+        };
+    
+        // Fungsi untuk meminjam buku
+        function pinjamBuku(bukuId) {
+            if (stokBuku[bukuId] > 0) {
+                stokBuku[bukuId]--;
+                document.getElementById('stok-' + bukuId).textContent = stokBuku[bukuId];
+                document.getElementById('message').textContent = "Buku berhasil dipinjam!";
+            } else {
+                document.getElementById('message').textContent = "Stok buku habis, tidak dapat dipinjam.";
+            }
+        }
+    
+        // Fungsi untuk mengembalikan buku
+        function kembalikanBuku() {
+            const bukuId = document.getElementById('return-book').value;
+            stokBuku[bukuId]++;
+            document.getElementById('stok-' + bukuId).textContent = stokBuku[bukuId];
+            document.getElementById('message').textContent = "Buku berhasil dikembalikan!";
+        }
+    </script>
+    
+    </body>
+    </html>
+    
+    

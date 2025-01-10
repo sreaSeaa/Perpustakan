@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perpustakaan</title>
+    <link rel="stylesheet" href="style.css">
+
+          
+</head>
+<script>
+    function validateLogin() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        // Validasi login menggunakan if-else
+        if (username === "admin" && password === "1234") {
+            alert("Login berhasil! Selamat datang, " + username + ".");
+            window.location.href = "peminjaman.html"; // Arahkan ke halaman profil
+        } else {
+            alert("Login gagal! Username atau password salah.");
+        }
+    }
+</script>
+<body>   
+    <header>
+        <div class="logo"> <img src="logo.png" alt="logo"> </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="profil.html">Profil</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="daftar_buku.html">Peminjaman</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <div class="library">
+            <h2>Selamat Datang di Perpustakaan Fiksi</h2>
+            <p>Menyediakan berbagai koleksi buku fiksi</p>
+        </div>
+        <div class="login-section">
+            <h3>Login</h3>
+            <form onsubmit="event.preventDefault(); validateLogin();">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Masukkan username" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Masukkan password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
